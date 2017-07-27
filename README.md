@@ -22,14 +22,14 @@ This is an [R][] package.
 
 ```r
 source("https://bioconductor.org/biocLite.R")
-biocLite("hbc/bcbioRnaseq")
+biocLite("hbc/bcbioRnaseq", ref="release-0.0.24")
 ```
 
 ### [devtools][] method
 
 ```r
 install.packages("devtools")
-devtools::install_github("hbc/bcbioRnaseq")
+devtools::install_github("hbc/bcbioRnaseq", ref="release-0.0.24")
 ```
 
 ## Examples
