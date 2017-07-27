@@ -14,7 +14,7 @@ downloads <- function(file = NULL) {
         sapply(seq_along(file), function(a) {
             if (!file.exists(file[a])) {
                 download.file(
-                    file.path("http://raw.githubusercontent.com/",
+                    file.path("http://raw.githubusercontent.com",
                               "hbc", "bcbioRnaseq", "release-0.0.24",
                               "docs", "downloads", file[a]),
                     destfile = file[a])
