@@ -200,7 +200,7 @@ plot_volcano <- function(
             pch = 21L) +
         theme(legend.position = "none") +
         scale_x_continuous(limits = range_lfc)
-    if ( text_labels > 0 ) {
+    if (text_labels > 0) {
         volcano <- volcano +
         geom_text_repel(
             data = volcano_text,
