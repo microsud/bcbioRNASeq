@@ -199,13 +199,16 @@ plot_volcano <- function(
             fill = point_color,
             pch = 21L) +
         theme(legend.position = "none") +
-        scale_x_continuous(limits = range_lfc) +
+        scale_x_continuous(limits = range_lfc)
+    if ( text_labels > 0 ) {
+        volcano <- volcano +
         geom_text_repel(
             data = volcano_text,
             aes_(x = ~log2_fold_change,
                  y = ~neg_log_padj,
                  label = ~symbol),
             size = 3L)
+    }
     if (direction == "both" | direction == "up") {
         volcano_poly_up <- with(stats, data.frame(
             x = as.numeric(c(
