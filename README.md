@@ -37,8 +37,8 @@ devtools::install_github("hbc/bcbioRnaseq", ref="release-0.0.24")
 [HTML reports](http://bcb.io/bcbio_rnaseq_output_example) rendered from the
 default RMarkdown templates included in the package.
 
-* [QC example](http://bcb.io/bcbio_rnaseq_output_example/qc.html)
-* [DE example](http://bcb.io/bcbio_rnaseq_output_example/de.html)
+* Example of [QC report-release](http://bcb.io/bcbio_rnaseq_output_example/qc-release-0.0.24.html)
+* Example of [DE report-release](http://bcb.io/bcbio_rnaseq_output_example/de-release-0.0.24.html)
 
 
 ## Contribute
