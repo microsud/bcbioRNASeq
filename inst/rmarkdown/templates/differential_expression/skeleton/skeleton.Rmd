@@ -58,8 +58,7 @@ alpha_summary(dds)
 ```{r res}
 res_unshrunken <- results(
     dds,
-    contrast = contrast,
-    alpha = alpha)
+    contrast = contrast)
 
 # DESeqResults with shrunken log2 fold changes (LFC).
 # Still being prototyped, see `?lfcShrink` (DESeq 1.16).
