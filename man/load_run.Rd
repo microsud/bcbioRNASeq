@@ -5,7 +5,8 @@
 \title{Load bcbio-nextgen run}
 \usage{
 load_run(upload_dir = "final", analysis = "rnaseq",
-  interesting_groups = "description", sample_metadata_file = NULL, ...)
+  interesting_groups = "description", sample_metadata_file = NULL,
+  max_samples = 50, ...)
 }
 \arguments{
 \item{upload_dir}{Path to final upload directory. This path is set when
@@ -21,6 +22,9 @@ is used for PCA and heatmap QC functions.}
 \item{sample_metadata_file}{\emph{Optional}. Custom metadata file containing
 sample information. Otherwise defaults to sample metadata saved in the YAML
 file.}
+
+\item{max_samples}{\emph{Optional}. Maximum number of samples to calculate rlog and
+variance stabilization object from DESeq2.}
 
 \item{...}{Additional arguments, saved as metadata.}
 }

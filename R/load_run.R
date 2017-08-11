@@ -21,6 +21,8 @@
 #' @param sample_metadata_file *Optional*. Custom metadata file containing
 #'   sample information. Otherwise defaults to sample metadata saved in the YAML
 #'   file.
+#' @param max_samples *Optional*. Maximum number of samples to calculate rlog and
+#'   variance stabilization object from DESeq2.
 #' @param ... Additional arguments, saved as metadata.
 #'
 #' @return [bcbioRNADataSet].
@@ -30,6 +32,7 @@ load_run <- function(
     analysis = "rnaseq",
     interesting_groups = "description",
     sample_metadata_file = NULL,
+    max_samples = 50,
     ...) {
     # Directory paths ====
     # Check connection to final upload directory
@@ -178,18 +181,33 @@ load_run <- function(
         txi = txi,
         colData = col_data,
         design = formula(~1L)) %>%
-        DESeq
+        estimateSizeFactors %>%
+        estimateDispersions
+    tmm <- .tmm(raw_counts)
 
+    # rlog & variance
+    if(nrow(col_data) > max_samples){
+        message("Data to big, skipping vst/rlog")
+        rlog <- DESeqTransform(
+            SummarizedExperiment(assays = log2(tmm + 1),
+                                 colData = colData(dds)))
+        vst <- DESeqTransform(
+            SummarizedExperiment(assays = log2(tmm + 1),
+                                 colData = colData(dds)))
+    }else{
+        rlog <- rlog(dds)
+        vst <- varianceStabilizingTransformation(dds)
+    }
 
     # SummarizedExperiment ====
     se <- .summarized_experiment(
         assays = SimpleList(
-            raw_counts = raw_counts,
+            raw_counts = counts(dds),
             tpm = tpm,
             normalized_counts = counts(dds, normalized = TRUE),
-            tmm = .tmm(raw_counts),
-            rlog = rlog(dds),
-            vst = varianceStabilizingTransformation(dds)),
+            tmm = tmm,
+            rlog = rlog,
+            vst = vst),
         col_data = col_data,
         row_data = annotable,
         metadata = metadata)
