@@ -1,6 +1,6 @@
 #' Over-representation analysis
 #' 
-#' These functions are wrappers for clusterProfiler's [enrichGO()] and the different output plotting functions: [dotplot()], [enrichMap()] and [cnetplot()] that have been optimized to work
+#' These functions use clusterProfiler's [enrichGO()] and plotting functions: [dotplot()], [enrichMap()] and [cnetplot()] that have been optimized to work
 #' with a [bcbioRnaDataSet] run object. 
 #'
 #' `ora_clusterprofiler()` uses the results output from DESeq2 to identify GO processes that are enriched for a user-defined significant gene list relative to all genes tested for differential expression. 
